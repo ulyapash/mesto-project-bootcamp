@@ -1,0 +1,11 @@
+.card__like {
+  max-height: 19px;
+  max-width: 22px;
+  align-self: center;
+  transition: opacity .3s ease;
+}
+
+
+.card__like:hover {
+  opacity: .5;
+}

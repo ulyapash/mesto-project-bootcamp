@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css"> 
+  <title>Mesto</title>
+</head>
+<body class="page">
+  <header class="header">
+    <img src="./images/logo.svg" alt="Логотип Mesto Russia" class="header__logo">
+  </header>
+  <main class="content"> 
+    <section class="profile">
+      <div class="profile__info-wrapper">
+        <img src="./images/image_avatar.jpg" alt="фотография профиля" class="prifile__avatar">
+        <div class="profile__info">
+          <div class="profile__data">
+            <div class="profile__data-wrapper">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button class="profile__edit-button"></button>
+            </div>
+            <p class="profile__description">Исследователь океана</p>
+          </div>
+        </div>
+      </div>
+      <button class="profile__add-button"></button>
+    </section>
+    <section class="cards">
+      <div class="card">
+        <img src="./images/карачаевск.jpg" alt="фотография храма" class="card__image">
+        <div class="card__block">
+          <div class="card__title">Карачаевск</div>
+          <img src="./images/like.svg" alt="" class="card__like">
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/эльбрус.jpg" alt="фотография Эльбруса на закате" class="card__image">
+        <div class="card__block">
+          <div class="card__title">Гора Эльбрус</div>
+          <img src="./images/like.svg" alt="" class="card__like">
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/Домбай.jpg" alt="фотография гор" class="card__image">
+        <div class="card__block">
+          <div class="card__title">Домбай</div>
+          <img src="./images/like.svg" alt="" class="card__like">
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/эльбрус.jpg" alt="фотография Эльбруса на закате" class="card__image">
+        <div class="card__block">
+          <div class="card__title">Гора Эльбрус</div>
+          <img src="./images/like.svg" alt="" class="card__like">
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/Домбай.jpg" alt="фотография гор" class="card__image">
+        <div class="card__block">
+          <div class="card__title">Домбай</div>
+          <img src="./images/like.svg" alt="" class="card__like">
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/карачаевск.jpg" alt="фотография храма" class="card__image">
+        <div class="card__block">
+          <div class="card__title">Карачаево-Ч...</div>
+          <img src="./images/like.svg" alt="" class="card__like">
+        </div>
+      </div>
+    </section> 
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2023. Mesto Russia</p>
+  </footer>
+  <div class="popup popup_opened popup-edit">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <form class="form edit-form">
+        <h3 class="form__header">Редактировать профиль</h3>
+        <input type="text" placeholder="Жак-Ив Кусто" class="form__input">
+        <input type="text" placeholder="Исследователь океана" class="form__input">
+        <button class="form__save-button">Сохранить</button>
+        <button type="reset" class="popup__close-button"></button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

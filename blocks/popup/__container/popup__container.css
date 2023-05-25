@@ -1,11 +1,11 @@
 .popup__container {
-  position: fixed;
-  top: 25%;
-  left: 32%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  z-index: 12;
 }
 
 @media screen and (max-width: 719px) {
   .popup__container {
-    left: 8%;
   }
 }

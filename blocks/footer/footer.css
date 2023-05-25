@@ -5,12 +5,11 @@
   font-size: 18px;
   line-height: 22px;
   color: #545454;
-  max-width: 318px;
-  margin: 67px 762px 60px 200px;
-
+  margin: 67px 0 60px;
+  
   }
 
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 1023px) {
     .footer {
       font-size: 14px;
       line-height: 17px;

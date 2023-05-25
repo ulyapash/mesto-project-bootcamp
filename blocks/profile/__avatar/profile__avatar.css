@@ -7,7 +7,7 @@
   align-self: center;
 }
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 1023px) {
   .prifile__avatar {
     margin: 0 auto;
   }

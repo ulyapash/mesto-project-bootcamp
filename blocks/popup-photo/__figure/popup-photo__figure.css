@@ -1,0 +1,4 @@
+.popup-photo__figure {
+  display: flex;
+  flex-direction: column;
+}

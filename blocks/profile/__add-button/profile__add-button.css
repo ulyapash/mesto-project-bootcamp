@@ -10,6 +10,7 @@
   height: 50px;
   align-self: center;
   transition: opacity .3s ease;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {

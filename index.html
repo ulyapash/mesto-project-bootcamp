@@ -28,64 +28,58 @@
       <button class="profile__add-button" type="button"></button>
     </section>
     <section class="cards">
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="фотография храма" class="card__image">
-        <div class="card__block">
-          <div class="card__title">Карачаевск</div>
-          <button class="card__like" type="button"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/elbrus.jpg" alt="фотография Эльбруса на закате" class="card__image">
-        <div class="card__block">
-          <div class="card__title">Гора Эльбрус</div>
-          <button class="card__like" type="button"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/dombai.jpg" alt="фотография гор" class="card__image">
-        <div class="card__block">
-          <div class="card__title">Домбай</div>
-          <button class="card__like" type="button"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/elbrus.jpg" alt="фотография Эльбруса на закате" class="card__image">
-        <div class="card__block">
-          <div class="card__title">Гора Эльбрус</div>
-          <button class="card__like" type="butt"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/dombai.jpg" alt="фотография гор" class="card__image">
-        <div class="card__block">
-          <div class="card__title">Домбай</div>
-          <button class="card__like" type="button"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="фотография храма" class="card__image">
-        <div class="card__block">
-          <div class="card__title">Карачаево-Ч...</div>
-          <button class="card__like" type="butt"></button>
-        </div>
-      </div>
+      <template id="card">
+        <div class="card">
+          <img src="" alt="" class="card__image">  
+          <div class="card__block"> 
+            <div class="card__title"></div> 
+            <button class="card__like" type="button"></button> 
+          </div> 
+          <button class="card__trash"></button>
+        </div> 
+      </template>
     </section> 
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2023. Mesto Russia</p>
   </footer>
-  <div class="popup popup_opened popup-edit">
-  <div class="popup__overlay"></div>
+  <div class="popup popup-edit">
+    <div class="popup__overlay"></div>
     <div class="popup__container">
       <form class="form edit-form">
+        <button type="button" class="popup__close-button popup-edit__close-button"></button>
         <h3 class="form__header">Редактировать профиль</h3>
-        <input type="text" placeholder="Жак-Ив Кусто" class="form__input">
-        <input type="text" placeholder="Исследователь океана" class="form__input">
-        <button class="form__save-button" type="button">Сохранить</button>
-        <button type="button" class="popup__close-button"></button>
+        <input type="text" placeholder="Жак-Ив Кусто" class="form__input form__input_name">
+        <input type="text" placeholder="Исследователь океана" class="form__input form__input_job">
+        <button class="form__save-button" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
+
+  <div class="popup  popup-add">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <form class="form create-form">
+        <button type="button" class="popup__close-button popup-add__close-button"></button>
+        <h3 class="form__header">Новое место</h3>
+        <input type="text" placeholder="Название" class="form__input form__input_place-name">
+        <input type="text" placeholder="Ссылка на картинку" class="form__input form__input_place-link">
+        <button class="form__create-button" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup  popup-photo">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <figure class="photo__figure popup-photo__figure">
+        <img alt="" class="popup-photo__image">
+        <figcaption class="popup-photo__figurecaption"></figcaption>
+      </figure>
+      <button class="popup__close-button popup-photo__closebutton"></button>
+    </div>
+  </div>
+
+  <script src="./script/index.js"></script>
 </body>
 </html>

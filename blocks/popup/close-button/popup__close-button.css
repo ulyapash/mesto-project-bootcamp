@@ -5,8 +5,8 @@
   background-position: center;
   background-repeat: no-repeat;
   margin-left: auto; 
-  right: -8px;
-  top: -24px;
+  right: -40px;
+  top: -40px;
   width: 32px;
   height: 32px;
   border: none;
@@ -26,8 +26,8 @@
     height: 20px;
     min-width: 20px;
     min-height: 20px;
-    top:-16px;
-    right: 40px;
+    top:-32px;
+    right: 0px;
     background-size: auto;
   }
 }

@@ -21,77 +21,82 @@ const popupPhotoClosebutton = popupPhoto.querySelector('.popup-photo__closebutto
 const closeButtons = document.querySelectorAll('.popup__close-button')
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
- 
+const popups = document.querySelectorAll('.popup');
+const popupOverlays = document.querySelectorAll('.popup__overlay');
 
-function showError(inputElement, errorElement) {
+function showError(inputElement, errorElement, config) {
   errorElement.textContent =  inputElement.validationMessage; 
-  inputElement.classList.add('form__input_type_error')
+  inputElement.classList.add(config.erroeInputClass)
 };
 
-function hideError(inputElement, errorElement) {
+function hideError(inputElement, errorElement, config) {
   errorElement.textContent =  inputElement.validationMessage; 
-  inputElement.classList.remove('form__input_type_error')
+  inputElement.classList.remove(config.erroeInputClass)
   
 }; 
 
 
-function checkInputValidity(inputElement, formElement){
+function checkInputValidity(inputElement, formElement, config){
   const isInputValid = inputElement.validity.valid;
   const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
   if (!isInputValid){
-    showError(inputElement, errorElement )
+    showError(inputElement, errorElement, config )
   } else {
-    hideError(inputElement, errorElement)
+    hideError(inputElement, errorElement, config )
   }
 }
 
-function disableButton(buttonElement){
-  buttonElement.disabled =  "disabled";
-  buttonElement.classList.add('form__save-button_inactive')
+function disableButton(buttonElement, config){
+  buttonElement.disabled = true;
+  buttonElement.classList.add(config.inactiveButtonClass)
 }
 
-function enableButton(buttonElement){
-  buttonElement.disabled =  "false";
-  buttonElement.classList.remove('form__save-button_inactive')
+function enableButton(buttonElement, config){
+  buttonElement.disabled = false;
+  buttonElement.classList.remove(config.inactiveButtonClass)
 }
 
-function toggleButtonState(buttonElement, isActive){
+function toggleButtonState(buttonElement, isActive, config ){
   if(!isActive) {
-    disableButton(buttonElement)
+    disableButton(buttonElement, config)
   }else{
-    enableButton(buttonElement)
+    enableButton(buttonElement, config)
   }
 }
 
 
 
-function setEventListener(formElement){
-  const inputList = formElement.querySelectorAll('.form__input'); 
-  const submitbuttonElement = formElement.querySelector('.form__save-button');
+function setEventListener(formElement, config ){
+  const inputList = formElement.querySelectorAll(config.inputSelector); 
+  const submitButtonElement = formElement.querySelector(config.submitButtonSelector);
 
-  toggleButtonState(submitbuttonElement, false);
+  // toggleButtonState(submitButtonElement, false, config);
   [...inputList].forEach(function(inputElement){
     inputElement.addEventListener('input', () =>{ 
-      checkInputValidity(inputElement, formElement);
-      toggleButtonState(submitbuttonElement, formElement.checkValidity());
+      checkInputValidity(inputElement, formElement, config);
+      toggleButtonState(submitButtonElement, formElement.checkValidity(), config);
     })
   })
-  formElement.addEventListener("submit", (evt) => {
-     evt.preventDefault()
-  })
+  submitButtonElement.addEventListener('click', () => console.log('go'))
 }
 
-function enableValidation() {
-  const formList = document.querySelectorAll('.form');
+function enableValidation(config) {
+  const formList = document.querySelectorAll(config.formSelector  );
   [...formList].forEach(function(formElement){
-    setEventListener(formElement)
+    setEventListener(formElement, config)
   })
 }
 
-enableValidation()
 
+const config = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save-button',
+  inactiveButtonClass:'form__save-button_inactive',
+  errorInputClass:'form__input_type_error'
+}
 
-
+enableValidation(config)
 
 
 const initialCards = [
@@ -125,13 +130,12 @@ const initialCards = [
 
 
 
-
-
 function openPopup(popup) {
   popup.classList.add('popup_opened')
 }
 
 function closePopup(popup) {
+  console.log(popup);
   popup.classList.remove('popup_opened')
 }
 
@@ -206,10 +210,10 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
+popupOverlays.forEach(overlay => overlay.addEventListener('click', (evt) => closePopup(evt.target.closest('.popup'))));
 
-
-
-
-
-
-
+document.addEventListener('keydown', evt => {
+  if (evt.code === "Escape") {
+    popups.forEach(popup => closePopup(popup))
+  }
+})

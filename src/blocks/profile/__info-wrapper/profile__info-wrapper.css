@@ -1,0 +1,12 @@
+.profile__info-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__info-wrapper {
+    display: grid;
+    grid-template-columns: max-content;
+
+  }
+}

@@ -1,9 +1,15 @@
 import './pages/index.css';
 import { openPopup, closePopup } from "./components/modal";
-import { popups, editProfileButton, addProfileButton, popupEdit, popupAdd, profileName, profileDescription, formCreateElement, formEditElement, closeButtons, popupOverlays, config, initialCards, nameInput, jobInput } from "./components/utils";
-import { enableValidation } from "./components/validate";
-import { initCards, handleCreateCard } from './components/card';
+import { editProfileButton, addProfileButton, popupEdit, popupAdd, profileName, profileDescription, formCreateElement, formEditElement, config, initialCards, nameInput, jobInput, profilePhoto } from "./components/utils";
+import { enableValidation, disableButton } from "./components/validate";
+import { initCards } from './components/card';
+import { getUserData } from './components/api';
 
+getUserData().then(((data) => {
+  profileName.textContent = data.name;
+  profileDescription.textContent = data.about;
+  profilePhoto.textContent = data.avatar;
+}));
 
 formCreateElement.addEventListener('submit', handleCreateCard);
 formEditElement.addEventListener('submit', handleProfileFormSubmit); 
@@ -22,20 +28,13 @@ function handleProfileFormSubmit(evt) {
   closePopup(popupEdit);
 }
 
-
-popupOverlays.forEach(overlay => overlay.addEventListener('click', (evt) => closePopup(evt.target.closest('.popup'))));
-
-document.addEventListener('keydown', evt => {
-  if (evt.code === "Escape") {
-    popups.forEach(popup => closePopup(popup))
-  }
-})
-
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
-
+function handleCreateCard(evt) {
+  evt.preventDefault(); 
+  cards.prepend(createCard(placeNameInput.value, placeLinkInput.value));
+  closePopup(popupAdd);
+  evt.target.reset();
+  disableButton(evt.submitter, config);
+}
 
 initCards(initialCards);
 enableValidation(config);

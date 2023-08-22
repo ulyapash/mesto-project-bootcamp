@@ -1,13 +1,6 @@
-import { cards, popupAdd, popupPhoto, cardTemplate, placeNameInput, placeLinkInput } from "./utils";
+import { cards, popupAdd, popupPhoto, cardTemplate, placeNameInput, placeLinkInput, popupPhotoImage, popupPhotoFigurecaption } from "./utils";
 import { closePopup, openPopup } from "./modal";
 
-
-export function handleCreateCard(evt) {
-  evt.preventDefault(); 
-  cards.prepend(createCard(placeNameInput.value, placeLinkInput.value));
-  closePopup(popupAdd);
-  evt.target.reset();
-}
 
 function createCard(name, link) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -27,7 +20,7 @@ function createCard(name, link) {
   cardImage.alt = name;
   cardElement.querySelector('.card__title').textContent = name;
   cardLike.addEventListener('click', function() {
-    cardLike.classList.add('card__like-active')
+    cardLike.classList.toggle('card__like-active')
   })
   cardTrash.addEventListener('click', function() {
     cardElement.remove()

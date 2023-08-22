@@ -1,6 +1,6 @@
 import './pages/index.css';
 import { openPopup, closePopup } from "./components/modal";
-import { editProfileButton, addProfileButton, popupEdit, popupAdd, profileName, profileDescription, formCreateElement, formEditElement, config, initialCards, nameInput, jobInput, profilePhoto, placeNameInput, placeLinkInput, cards } from "./components/utils";
+import { editProfileButton, addProfileButton, popupEdit, popupAdd, profileName, profileDescription, formCreateElement, formEditElement, config, nameInput, jobInput, profilePhoto, placeNameInput, placeLinkInput, cards } from "./components/utils";
 import { enableValidation, disableButton } from "./components/validate";
 import { initCards, createCard } from './components/card';
 import { addCard, getCards, getUserData, updateUserData } from './components/api';

@@ -38,7 +38,7 @@ function handleProfileFormSubmit(evt) {
 function handleCreateCard(evt) {
   evt.preventDefault();
   addCard(placeNameInput.value, placeLinkInput.value).then((data) => {
-    cards.prepend(createCard(data.name, data.link));
+    cards.prepend(createCard(data._id, data.name, data.link));
     closePopup(popupAdd);
     evt.target.reset();
     disableButton(evt.submitter, config);

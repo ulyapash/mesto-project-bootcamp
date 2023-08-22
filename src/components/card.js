@@ -1,8 +1,8 @@
 import { cards, popupAdd, popupPhoto, cardTemplate, placeNameInput, placeLinkInput, popupPhotoImage, popupPhotoFigurecaption } from "./utils";
 import { closePopup, openPopup } from "./modal";
+import { deleteCard } from "./api";
 
-
-export function createCard(name, link) {
+export function createCard(cardId, name, link) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardLike = cardElement.querySelector('.card__like');
   const cardTrash = cardElement.querySelector('.card__trash');
@@ -23,7 +23,7 @@ export function createCard(name, link) {
     cardLike.classList.toggle('card__like-active')
   })
   cardTrash.addEventListener('click', function() {
-    cardElement.remove()
+    removeCard(cardId, cardElement);
   })
 
   return cardElement;
@@ -31,6 +31,12 @@ export function createCard(name, link) {
 
 export function initCards(initialCards) {
   initialCards.forEach(function(card){
-    cards.prepend(createCard(card.name, card.link)); 
+    cards.prepend(createCard(card._id, card.name, card.link)); 
+  })
+}
+
+function removeCard(cardId, cardElement) {
+  deleteCard(cardId).then(() => {
+    cardElement.remove();
   })
 }

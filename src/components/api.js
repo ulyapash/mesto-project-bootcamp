@@ -72,3 +72,10 @@ export function addCard(name, link) {
       console.error(error);
     })
 }
+
+export function deleteCard(cardId) {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers,
+  })
+}

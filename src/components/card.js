@@ -2,7 +2,7 @@ import { cards, popupAdd, popupPhoto, cardTemplate, placeNameInput, placeLinkInp
 import { closePopup, openPopup } from "./modal";
 
 
-function createCard(name, link) {
+export function createCard(name, link) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardLike = cardElement.querySelector('.card__like');
   const cardTrash = cardElement.querySelector('.card__trash');

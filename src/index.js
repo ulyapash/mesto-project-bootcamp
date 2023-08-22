@@ -1,9 +1,9 @@
 import './pages/index.css';
 import { openPopup, closePopup } from "./components/modal";
-import { editProfileButton, addProfileButton, popupEdit, popupAdd, profileName, profileDescription, formCreateElement, formEditElement, config, initialCards, nameInput, jobInput, profilePhoto } from "./components/utils";
+import { editProfileButton, addProfileButton, popupEdit, popupAdd, profileName, profileDescription, formCreateElement, formEditElement, config, initialCards, nameInput, jobInput, profilePhoto, placeNameInput, placeLinkInput, cards } from "./components/utils";
 import { enableValidation, disableButton } from "./components/validate";
-import { initCards } from './components/card';
-import { getCards, getUserData } from './components/api';
+import { initCards, createCard } from './components/card';
+import { addCard, getCards, getUserData, updateUserData } from './components/api';
 
 getUserData().then(((data) => {
   profileName.textContent = data.name;
@@ -27,17 +27,22 @@ addProfileButton.addEventListener('click',() => openPopup(popupAdd));
 function handleProfileFormSubmit(evt) {
   evt.preventDefault(); 
 
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = jobInput.value;
+  updateUserData(nameInput.value, jobInput.value).then((data) => {
+    profileName.textContent = data.name;
+    profileDescription.textContent = data.about;
+  });
+
   closePopup(popupEdit);
 }
 
 function handleCreateCard(evt) {
-  evt.preventDefault(); 
-  cards.prepend(createCard(placeNameInput.value, placeLinkInput.value));
-  closePopup(popupAdd);
-  evt.target.reset();
-  disableButton(evt.submitter, config);
+  evt.preventDefault();
+  addCard(placeNameInput.value, placeLinkInput.value).then((data) => {
+    cards.prepend(createCard(data.name, data.link));
+    closePopup(popupAdd);
+    evt.target.reset();
+    disableButton(evt.submitter, config);
+  });
 }
 
 enableValidation(config);

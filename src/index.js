@@ -3,13 +3,17 @@ import { openPopup, closePopup } from "./components/modal";
 import { editProfileButton, addProfileButton, popupEdit, popupAdd, profileName, profileDescription, formCreateElement, formEditElement, config, initialCards, nameInput, jobInput, profilePhoto } from "./components/utils";
 import { enableValidation, disableButton } from "./components/validate";
 import { initCards } from './components/card';
-import { getUserData } from './components/api';
+import { getCards, getUserData } from './components/api';
 
 getUserData().then(((data) => {
   profileName.textContent = data.name;
   profileDescription.textContent = data.about;
   profilePhoto.textContent = data.avatar;
 }));
+
+getCards().then((cards) => {
+  initCards(cards);
+})
 
 formCreateElement.addEventListener('submit', handleCreateCard);
 formEditElement.addEventListener('submit', handleProfileFormSubmit); 
@@ -36,5 +40,4 @@ function handleCreateCard(evt) {
   disableButton(evt.submitter, config);
 }
 
-initCards(initialCards);
 enableValidation(config);

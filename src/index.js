@@ -1,14 +1,15 @@
 import './pages/index.css';
 import { openPopup, closePopup } from "./components/modal";
-import { editProfileButton, addProfileButton, popupEdit, popupAdd, profileName, profileDescription, formCreateElement, formEditElement, config, nameInput, jobInput, profilePhoto, placeNameInput, placeLinkInput, cards } from "./components/utils";
+import { editProfileButton, addProfileButton, popupEdit, popupAdd, popupAvatar, profileName, profileDescription, formCreateElement, formEditElement, config, nameInput, jobInput, profilePhoto, placeNameInput, avatarInput, cards, avatarEditButton, formAvatarElement, placeLinkInput, profileAvatar } from "./components/utils";
 import { enableValidation, disableButton } from "./components/validate";
 import { initCards, createCard } from './components/card';
-import { addCard, getCards, getUserData, updateUserData } from './components/api';
+import { addCard, getCards, getUserData, updateUserData, updateAvatar } from './components/api';
 
 getUserData().then(((data) => {
   profileName.textContent = data.name;
   profileDescription.textContent = data.about;
-  profilePhoto.textContent = data.avatar;
+  profilePhoto.src = data.avatar;
+  localStorage.setItem('id', data._id);
 }));
 
 getCards().then((cards) => {
@@ -17,12 +18,15 @@ getCards().then((cards) => {
 
 formCreateElement.addEventListener('submit', handleCreateCard);
 formEditElement.addEventListener('submit', handleProfileFormSubmit); 
+formAvatarElement.addEventListener('submit', handleProfileAvatarSubmit);
 
 editProfileButton.addEventListener('click', () => {
   openPopup(popupEdit)
 });
 
 addProfileButton.addEventListener('click',() => openPopup(popupAdd));
+
+avatarEditButton.addEventListener('click', () => openPopup(popupAvatar));
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault(); 
@@ -37,8 +41,8 @@ function handleProfileFormSubmit(evt) {
 
 function handleCreateCard(evt) {
   evt.preventDefault();
-  addCard(placeNameInput.value, placeLinkInput.value).then((data) => {
-    cards.prepend(createCard(data._id, data.name, data.link));
+  addCard(placeNameInput.value, placeLinkInput.value).then((card) => {
+    cards.prepend(createCard(card));
     closePopup(popupAdd);
     evt.target.reset();
     disableButton(evt.submitter, config);
@@ -46,3 +50,14 @@ function handleCreateCard(evt) {
 }
 
 enableValidation(config);
+
+function handleProfileAvatarSubmit(evt) {
+  evt.preventDefault();
+  updateAvatar(avatarInput.value).then((data) => {
+      profilePhoto.src = data.avatar;
+      closePopup(popupAvatar);
+      evt.target.reset();
+      disableButton(evt.submitter, config);
+  })
+}
+

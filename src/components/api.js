@@ -16,6 +16,7 @@ export function getUserData() {
     .then((result) => {
       return result;
     })
+    
     .catch((error) => {
       console.error(error);
     });
@@ -79,3 +80,56 @@ export function deleteCard(cardId) {
     headers: config.headers,
   })
 }
+
+export function likeCard(cardId) {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: config.headers,
+  })
+  .then((res) => {
+    return res.json();
+  })
+  .then((result) => {
+    return result;
+  })
+  .catch((error) => {
+    console.error(error);
+  })
+}
+
+export function unlikeCard(cardId){ 
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers,
+  })
+  .then((res) => {
+    return res.json();
+  })
+  .then((result) => {
+    return result;
+  })
+  .catch((error) => {
+    console.error(error);
+  })
+
+}
+
+export function updateAvatar(avatar){
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH', 
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: avatar
+    })
+  })
+  .then((res) => {
+    return res.json();
+  })
+  .then((result) => {
+    return result;
+  })
+  .catch((error) => {
+    console.error(error);
+  })
+}
+

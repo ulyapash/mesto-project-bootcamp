@@ -42,3 +42,5 @@
 @import url(../blocks/form/__input/_type_error/form__input_type_error.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__save-button/_inactive/form__save-button_inactive.css);
+@import url(../blocks/card/__like-count/card__like-count.css);
+@import url(../blocks/profile/__avatar-edit-button/profile__avatar-edit-button.css);

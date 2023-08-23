@@ -27,7 +27,7 @@ export function createCard(card) {
         cardLikes.textContent = updateCard.likes.length;
       })
     } else {
-      likeCard(cardId).then((updateCard) => {
+      likeCard(card._id).then((updateCard) => {
         cardLike.classList.toggle('card__like-active');
         cardLikes.textContent = updateCard.likes.length;
       })

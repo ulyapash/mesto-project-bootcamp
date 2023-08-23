@@ -11,7 +11,11 @@ export function getUserData() {
     headers: config.headers,
   })
     .then((res) => {
-      return res.json();
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
     .then((result) => {
       return result;
@@ -32,7 +36,11 @@ export function updateUserData(name, about) {
     })
   })
     .then((res) => {
-      return res.json();
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
     .then((result) => {
       return result;
@@ -44,7 +52,11 @@ export function getCards() {
     headers: config.headers,
   })
     .then((res) => {
-      return res.json();
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
     .then((result) => {
       return result;
@@ -64,7 +76,11 @@ export function addCard(name, link) {
     })
   })
     .then((res) => {
-      return res.json();
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Ошибка: ${res.status}`);
     })
     .then((result) => {
       return result;
@@ -87,7 +103,11 @@ export function likeCard(cardId) {
     headers: config.headers,
   })
   .then((res) => {
-    return res.json();
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка: ${res.status}`);
   })
   .then((result) => {
     return result;
@@ -103,7 +123,11 @@ export function unlikeCard(cardId){
     headers: config.headers,
   })
   .then((res) => {
-    return res.json();
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка: ${res.status}`);
   })
   .then((result) => {
     return result;
@@ -123,7 +147,11 @@ export function updateAvatar(avatar){
     })
   })
   .then((res) => {
-    return res.json();
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка: ${res.status}`);
   })
   .then((result) => {
     return result;

@@ -1,4 +1,4 @@
-import { cards, popupAdd, popupPhoto, cardTemplate, popupPhotoImage, popupPhotoFigurecaption } from "./utils";
+import { cards, popupAdd, popupPhoto, cardTemplate, popupImage, popupFigurecaption } from "./utils";
 import { closePopup, openPopup } from "./modal";
 import { deleteCard, likeCard, unlikeCard } from "./api";
 
@@ -11,9 +11,9 @@ export function createCard(card) {
   const cardLikes = cardElement.querySelector('.card__like-count');
   cardImage.addEventListener('click', () => {
     openPopup(popupPhoto);
-    popupPhotoImage.src = card.link;
-    popupPhotoImage.alt = card.name;
-    popupPhotoFigurecaption.textContent = card.name;
+    popupImage.src = card.link;
+    popupImage.alt = card.name;
+    popupFigurecaption.textContent = card.name;
   });
    
   cardLikes.textContent = card.likes.length;

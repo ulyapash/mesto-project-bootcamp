@@ -1,12 +1,19 @@
 import { popups, closeButtons, popupOverlays} from "./utils";
 
+function closeByEsc(evt) {
+  if (evt.code === "Escape") {
+    popups.forEach(popup => closePopup(popup))
+  }
+}
+
 export function openPopup(popup) {
-  popup.classList.add('popup_opened')
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
 }
 
 export function closePopup(popup) {
-  console.log(popup);
-  popup.classList.remove('popup_opened')
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
 }
 
 closeButtons.forEach((button) => {
@@ -15,9 +22,3 @@ closeButtons.forEach((button) => {
 });
 
 popupOverlays.forEach(overlay => overlay.addEventListener('click', (evt) => closePopup(evt.target.closest('.popup'))));
-
-document.addEventListener('keydown', evt => {
-  if (evt.code === "Escape") {
-    popups.forEach(popup => closePopup(popup))
-  }
-})

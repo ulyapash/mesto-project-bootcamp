@@ -21,7 +21,10 @@ formEditElement.addEventListener('submit', handleProfileFormSubmit);
 formAvatarElement.addEventListener('submit', handleProfileAvatarSubmit);
 
 editProfileButton.addEventListener('click', () => {
-  openPopup(popupEdit)
+  openPopup(popupEdit);
+
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
 });
 
 addProfileButton.addEventListener('click',() => openPopup(popupAdd));

@@ -19,10 +19,6 @@ export function getUserData() {
     })
     .then((result) => {
       return result;
-    })
-    
-    .catch((error) => {
-      console.error(error);
     });
 }
 
@@ -44,7 +40,7 @@ export function updateUserData(name, about) {
     })
     .then((result) => {
       return result;
-    })
+    });
 }
 
 export function getCards() {
@@ -60,10 +56,7 @@ export function getCards() {
     })
     .then((result) => {
       return result;
-    })
-    .catch((error) => {
-      console.error(error);
-    })
+    });
 }
 
 export function addCard(name, link) {
@@ -84,17 +77,14 @@ export function addCard(name, link) {
     })
     .then((result) => {
       return result;
-    })
-    .catch((error) => {
-      console.error(error);
-    })
+    });
 }
 
 export function deleteCard(cardId) {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers,
-  })
+  });
 }
 
 export function likeCard(cardId) {
@@ -111,10 +101,7 @@ export function likeCard(cardId) {
   })
   .then((result) => {
     return result;
-  })
-  .catch((error) => {
-    console.error(error);
-  })
+  });
 }
 
 export function unlikeCard(cardId){ 
@@ -131,11 +118,7 @@ export function unlikeCard(cardId){
   })
   .then((result) => {
     return result;
-  })
-  .catch((error) => {
-    console.error(error);
-  })
-
+  });
 }
 
 export function updateAvatar(avatar){
@@ -155,9 +138,6 @@ export function updateAvatar(avatar){
   })
   .then((result) => {
     return result;
-  })
-  .catch((error) => {
-    console.error(error);
-  })
+  });
 }
 

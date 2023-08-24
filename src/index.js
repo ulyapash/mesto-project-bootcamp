@@ -5,17 +5,21 @@ import { enableValidation, disableButton } from "./components/validate";
 import { initCards, createCard } from './components/card';
 import { addCard, getCards, getUserData, updateUserData, updateAvatar } from './components/api';
 
-Promise.all([getUserData(), getCards()]).then((values) => {
-  const userData = values[0];
-  const cards = values[1];
+Promise.all([getUserData(), getCards()])
+  .then((values) => {
+    const userData = values[0];
+    const cards = values[1];
 
-  profileName.textContent = userData.name;
-  profileDescription.textContent = userData.about;
-  profilePhoto.src = userData.avatar;
-  localStorage.setItem('id', userData._id);
+    profileName.textContent = userData.name;
+    profileDescription.textContent = userData.about;
+    profilePhoto.src = userData.avatar;
+    localStorage.setItem('id', userData._id);
 
-  initCards(cards);
-})
+    initCards(cards);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 formCreateElement.addEventListener('submit', handleCreateCard);
 formEditElement.addEventListener('submit', handleProfileFormSubmit); 
@@ -38,14 +42,18 @@ function handleProfileFormSubmit(evt) {
   evt.submitter.textContent = 'Сохранение...';
 
 
-  updateUserData(nameInput.value, jobInput.value).then((data) => {
-    profileName.textContent = data.name;
-    profileDescription.textContent = data.about;
+  updateUserData(nameInput.value, jobInput.value)
+    .then((data) => {
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
 
-    closePopup(popupEdit);
+      closePopup(popupEdit);
 
-    evt.submitter.textContent = 'Сохранить';
-  });
+      evt.submitter.textContent = 'Сохранить';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function handleCreateCard(evt) {
@@ -53,14 +61,18 @@ function handleCreateCard(evt) {
   
   evt.submitter.textContent = 'Сохранение...';
   
-  addCard(placeNameInput.value, placeLinkInput.value).then((card) => {
-    cards.prepend(createCard(card));
-    closePopup(popupAdd);
-    evt.target.reset();
-    
-    disableButton(evt.submitter, config);
-    evt.submitter.textContent = 'Создать';
-  });
+  addCard(placeNameInput.value, placeLinkInput.value)
+    .then((card) => {
+      cards.prepend(createCard(card));
+      closePopup(popupAdd);
+      evt.target.reset();
+      
+      disableButton(evt.submitter, config);
+      evt.submitter.textContent = 'Создать';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 enableValidation(config);
@@ -70,13 +82,17 @@ function handleProfileAvatarSubmit(evt) {
 
   evt.submitter.textContent = 'Сохранение...';
 
-  updateAvatar(avatarInput.value).then((data) => {
-      profilePhoto.src = data.avatar;
-      closePopup(popupAvatar);
-      evt.target.reset();
+  updateAvatar(avatarInput.value)
+    .then((data) => {
+        profilePhoto.src = data.avatar;
+        closePopup(popupAvatar);
+        evt.target.reset();
 
-      disableButton(evt.submitter, config);
-      evt.submitter.textContent = 'Сохранить';
-  })
+        disableButton(evt.submitter, config);
+        evt.submitter.textContent = 'Сохранить';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 

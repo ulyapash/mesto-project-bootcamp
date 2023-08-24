@@ -22,15 +22,23 @@ export function createCard(card) {
   cardElement.querySelector('.card__title').textContent = card.name;
   cardLike.addEventListener('click', function() {
     if (cardLike.classList.contains('card__like-active')) {
-      unlikeCard(card._id).then((updateCard) => {
-        cardLike.classList.toggle('card__like-active');
-        cardLikes.textContent = updateCard.likes.length;
-      })
+      unlikeCard(card._id)
+        .then((updateCard) => {
+          cardLike.classList.toggle('card__like-active');
+          cardLikes.textContent = updateCard.likes.length;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     } else {
-      likeCard(card._id).then((updateCard) => {
-        cardLike.classList.toggle('card__like-active');
-        cardLikes.textContent = updateCard.likes.length;
-      })
+      likeCard(card._id)
+        .then((updateCard) => {
+          cardLike.classList.toggle('card__like-active');
+          cardLikes.textContent = updateCard.likes.length;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   })
 
@@ -53,7 +61,11 @@ export function initCards(initialCards) {
 }
 
 function removeCard(cardId, cardElement) {
-  deleteCard(cardId).then(() => {
-    cardElement.remove();
-  })
+  deleteCard(cardId)
+    .then(() => {
+      cardElement.remove();
+    })
+    .catch((error) => {
+      console.error(error);
+    })
 }

@@ -5,14 +5,15 @@ import { enableValidation, disableButton } from "./components/validate";
 import { initCards, createCard } from './components/card';
 import { addCard, getCards, getUserData, updateUserData, updateAvatar } from './components/api';
 
-getUserData().then(((data) => {
-  profileName.textContent = data.name;
-  profileDescription.textContent = data.about;
-  profilePhoto.src = data.avatar;
-  localStorage.setItem('id', data._id);
-}));
+Promise.all([getUserData(), getCards()]).then((values) => {
+  const userData = values[0];
+  const cards = values[1];
 
-getCards().then((cards) => {
+  profileName.textContent = userData.name;
+  profileDescription.textContent = userData.about;
+  profilePhoto.src = userData.avatar;
+  localStorage.setItem('id', userData._id);
+
   initCards(cards);
 })
 

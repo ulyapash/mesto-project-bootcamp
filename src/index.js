@@ -46,13 +46,14 @@ function handleProfileFormSubmit(evt) {
     .then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
-
-      closePopup(popupEdit);
-
-      evt.submitter.textContent = 'Сохранить';
     })
     .catch((error) => {
       console.error(error);
+    })
+    .finally(() => {
+      closePopup(popupEdit);
+
+      evt.submitter.textContent = 'Сохранить';
     });
 }
 
@@ -64,14 +65,16 @@ function handleCreateCard(evt) {
   addCard(placeNameInput.value, placeLinkInput.value)
     .then((card) => {
       cards.prepend(createCard(card));
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .finally(() => {
       closePopup(popupAdd);
       evt.target.reset();
       
       disableButton(evt.submitter, config);
       evt.submitter.textContent = 'Создать';
-    })
-    .catch((error) => {
-      console.error(error);
     });
 }
 
@@ -85,14 +88,16 @@ function handleProfileAvatarSubmit(evt) {
   updateAvatar(avatarInput.value)
     .then((data) => {
         profilePhoto.src = data.avatar;
-        closePopup(popupAvatar);
-        evt.target.reset();
-
-        disableButton(evt.submitter, config);
-        evt.submitter.textContent = 'Сохранить';
     })
     .catch((error) => {
       console.error(error);
-    });
+    })
+    .finally(() => {
+      closePopup(popupAvatar);
+      evt.target.reset();
+
+      disableButton(evt.submitter, config);
+      evt.submitter.textContent = 'Сохранить';
+    })
 }
 

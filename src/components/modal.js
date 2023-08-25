@@ -2,7 +2,7 @@ import { popups, closeButtons, popupOverlays} from "./utils";
 
 function closeByEsc(evt) {
   if (evt.code === "Escape") {
-    popups.forEach(popup => closePopup(popup))
+    closePopup(evt.target.closest('.popup'));
   }
 }
 

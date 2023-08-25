@@ -1,4 +1,4 @@
-import { cards, popupAdd, popupPhoto, cardTemplate, popupImage, popupFigurecaption, popupPhotoOverlay } from "./utils";
+import { cards, popupAdd, popupPhoto, cardTemplate, popupImage, popupFigurecaption } from "./utils";
 import { closePopup, openPopup } from "./modal";
 import { deleteCard, likeCard, unlikeCard } from "./api";
 
@@ -11,8 +11,6 @@ export function createCard(card) {
   const cardLikes = cardElement.querySelector('.card__like-count');
   cardImage.addEventListener('click', (evt) => {
     openPopup(popupPhoto);
-
-    popupPhotoOverlay.style.opacity = 0.9;
 
     popupImage.src = card.link;
     popupImage.alt = card.name;

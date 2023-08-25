@@ -24,7 +24,6 @@ export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
 export const popups = document.querySelectorAll('.popup');
 export const popupOverlays = document.querySelectorAll('.popup__overlay');
-export const popupPhotoOverlay = document.querySelector('.popup-photo__overlay');
 export const buttonEditProfileAvatar = document.querySelector('.profile__avatar-edit-button');
 export const popupAvatar = document.querySelector('.popup__avatar');
 export const formAvatarElement = document.querySelector('.update-avatar-form')

@@ -34,7 +34,7 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
 @import url(../blocks/card/__trash/card__trash.css);
-
+@import url(../blocks/popup/__overlay/_blackout/popup__overlay_blackout.css);
 @import url(../blocks/popup-photo/__container/popup-photo__container.css);
 @import url(../blocks/popup-photo/__figure/popup-photo__figure.css);
 @import url(../blocks/popup-photo/__figurecaption/popup-photo__figurecaption.css);

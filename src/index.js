@@ -2,8 +2,14 @@ import './pages/index.css';
 import { openPopup, closePopup } from "./components/modal";
 import { buttonOpenPopupProfile, buttonEditProfile, popupEdit, popupAdd, popupAvatar, profileName, profileDescription, formCreateElement, formEditElement, config, nameInput, jobInput, profilePhoto, placeIntutName, avatarInput, cards, buttonEditProfileAvatar, formAvatarElement, placeInputLink, profileAvatar, saveButton } from "./components/utils";
 import { enableValidation, disableButton } from "./components/validate";
-import { initCards, createCard } from './components/card';
+import { createCard } from './components/card';
 import { addCard, getCards, getUserData, updateUserData, updateAvatar } from './components/api';
+
+function initCards(initialCards) {
+  initialCards.forEach(function(card){
+    cards.append(createCard(card)); 
+  })
+};
 
 Promise.all([getUserData(), getCards()])
   .then((values) => {

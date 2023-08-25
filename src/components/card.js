@@ -57,12 +57,6 @@ export function createCard(card) {
   return cardElement;
 }
 
-export function initCards(initialCards) {
-  initialCards.forEach(function(card){
-    cards.append(createCard(card)); 
-  })
-}
-
 function removeCard(cardId, cardElement) {
   deleteCard(cardId)
     .then(() => {

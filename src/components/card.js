@@ -59,7 +59,7 @@ export function createCard(card) {
 
 export function initCards(initialCards) {
   initialCards.forEach(function(card){
-    cards.prepend(createCard(card)); 
+    cards.append(createCard(card)); 
   })
 }
 
